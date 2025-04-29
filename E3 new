@@ -1,0 +1,31 @@
+# Initialize Git repo
+git init
+git remote add origin https://github.com/Riya1904/JavaAdditionCI.git
+
+# Create Java file using here-doc
+cat > Addition.java <<EOF
+public class Addition {
+    public static void main(String[] args) {
+        int a = 10, b = 20;
+        int sum = a + b;
+        System.out.println("Sum: " + sum);
+    }
+}
+EOF
+
+# Create build.bat file using here-doc
+cat > build.bat <<EOF
+@echo off
+javac Addition.java
+if %errorlevel% neq 0 (
+    echo Compilation failed!
+    exit /b %errorlevel%
+)
+java Addition
+EOF
+
+# Add, commit, and push
+git add Addition.java build.bat
+git commit -m "Added Java addition program and build script"
+git branch -M master
+git push -u origin master
