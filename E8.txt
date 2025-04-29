@@ -7,7 +7,9 @@ echo "Hello from Docker container!" > /myfile.txt
 exit
 docker ps -a
 docker commit <container_id> your_dockerhub_username/ubuntu-custom
-docker commit 123abc456def johndoe/ubuntu-custom
+docker commit 123abc456def tengaleriya1904/ubuntu-custom
+docker images --digests
+docker tag sha256:bc753e713121f1305173aec1abb16098690bfce964450aecf32b0117f29d5d47 your_dockerhub_username/ubuntu-custom
 docker push your_dockerhub_username/ubuntu-custom
 https://hub.docker.com/r/your_dockerhub_username/ubuntu-custom
 
