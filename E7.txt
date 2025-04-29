@@ -22,6 +22,6 @@ echo "Hello, World from Dockerized PHP!";
 Terminal commands
 mkdir php-docker-app
 cd php-docker-app
-docker build -t tengaleriya1904/php-docker-app.
+docker build -t tengaleriya1904/php-docker-app .
 docker run -d -p 8081:80 tengaleriya1904/php-docker-app
 docker login
