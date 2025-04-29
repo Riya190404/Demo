@@ -1,0 +1,27 @@
+E7
+dockerignore
+*.log
+*.env
+node_modules
+.git
+
+dockerfile
+# Use the official PHP image as base
+FROM php:8.1-apache
+
+# Copy your PHP project files into the container
+COPY . /var/www/html/
+
+# Expose port 80 (Apache default)
+EXPOSE 80
+
+index.php
+<?php
+echo "Hello, World from Dockerized PHP!";
+?>
+Terminal commands
+mkdir php-docker-app
+cd php-docker-app
+docker build -t tengaleriya1904/php-docker-app.
+docker run -d -p 8081:80 tengaleriya1904/php-docker-app
+docker login

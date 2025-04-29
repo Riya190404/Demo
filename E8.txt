@@ -1,0 +1,13 @@
+E8
+docker --version
+docker login
+docker pull ubuntu
+docker run -it ubuntu /bin/bash
+echo "Hello from Docker container!" > /myfile.txt
+exit
+docker ps -a
+docker commit <container_id> your_dockerhub_username/ubuntu-custom
+docker commit 123abc456def johndoe/ubuntu-custom
+docker push your_dockerhub_username/ubuntu-custom
+https://hub.docker.com/r/your_dockerhub_username/ubuntu-custom
+

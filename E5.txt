@@ -1,0 +1,43 @@
+E5
+pipeline {
+    agent any
+
+    environment {
+        DEPLOY_DIR = "C:\\xampp\\htdocs\\html-demo"  // Correct Windows path format
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/Riya1904/html-demo.git'
+            }
+        }
+
+        stage('Prepare Deployment Directory') {
+            steps {
+                script {
+                    // Create the directory with backslashes in the path
+                    if (!fileExists("${DEPLOY_DIR}")) {
+                        bat "mkdir ${DEPLOY_DIR}"
+                    }
+                }
+            }
+        }
+
+        stage('Deploy HTML Files') {
+            steps {
+                bat "xcopy /Y /S /I *.html ${DEPLOY_DIR}\\"
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'HTML files deployed to XAMPP successfully!'
+        }
+        failure {
+            echo 'Deployment failed. Check workspace and permissions.'
+        }
+    }
+}

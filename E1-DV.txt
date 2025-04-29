@@ -1,0 +1,23 @@
+EXP1
+git --version
+git config --global user.name "riyagit"
+git config --global user.email "riy.ten.rt22@dypatil.edu"
+git config --list
+mkdir html-demo1
+cd html-demo1
+echo '<!DOCTYPE html><html><head><title>Page 1</title></head><body><h1>Page 1</h1></body></html>' > page1.html
+echo '<!DOCTYPE html><html><head><title>Page 2</title></head><body><h1>Page 2</h1></body></html>' > page2.html
+echo '<!DOCTYPE html><html><head><title>Page 3</title></head><body><h1>Page 3</h1></body></html>' > page3.html
+git init
+git add .
+git commit -m "Initial commit with 3 HTML files"
+git remote add origin https://github.com/Riya1904/html-demo1.git
+git remote -v
+git branch -M main
+git push -u origin main
+cd ..
+git clone https://github.com/Riya1904/html-demo1.git html-clone
+cd html-clone1
+ls
+
+

@@ -1,0 +1,63 @@
+E3
+Vscode:
+Addition.java
+// Addition.java
+public class Addition {
+    public static void main(String[] args) {
+        int a = 5;
+        int b = 7;
+        System.out.println("Sum: " + (a + b));
+    }
+}
+
+build.bat
+echo =============================
+echo Compiling Java Program...
+echo =============================
+javac -source 1.8 -target 1.8 Addition.java
+if %errorlevel% neq 0 (
+    echo Compilation Failed.
+    exit /b 1
+)
+
+echo =============================
+echo Running Java Program...
+echo =============================
+java Addition
+
+Pipeline:
+pipeline {
+    agent any
+    triggers {
+        cron('H/2 * * * *') // Run every 2 minutes
+    }
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git branch: 'master', credentialsId: 'github-token', url: 'https://github.com/Riya1904/JavaAdditionCI.git'
+            }
+        }
+        stage('Build and Run Java Program') {
+            steps {
+                bat 'build.bat'
+            }
+        }
+    }
+}
+
+Commands: git bash
+mkdir JavaAdditionCI
+cd JavaAdditionCI
+git init
+git add Addition.java build.bat
+git commit -m "Initial commit with Java addition program and build script"
+git remote add origin https://github.com/your-username/JavaAdditionCI.git
+git branch -M main
+git push -u origin main
+echo public class Addition { public static void main(String[] args) { System.out.println("Hello"); } } > Addition.java
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M master
+git remote add origin https://github.com/Riya1904/JavaAdditionCI.git
+git push -u origin master

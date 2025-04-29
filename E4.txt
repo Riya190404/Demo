@@ -1,0 +1,32 @@
+E4
+node {
+    def gitRepo = 'https://github.com/Riya1904/html-demo.git'  // Replace with your actual repo
+    def xamppDir = 'C:/xampp/htdocs'
+
+    stage('Clone GitHub Repo') {
+        // Delete any old workspace files first (optional)
+        deleteDir()
+
+        // Clone HTML repo manually instead of 'checkout scm'
+        git branch: 'main', url: gitRepo
+    }
+
+   stage('Deploy to XAMPP') {
+    // Clean the XAMPP htdocs directory (delete files and folders)
+    bat 'del /Q /F C:\\xampp\\htdocs\\*.*'
+    bat 'for /D %%p in (C:\\xampp\\htdocs\\*) do rmdir "%%p" /s /q'
+
+    // Copy HTML files to htdocs
+    bat 'xcopy /E /H /Y . C:\\xampp\\htdocs\\'
+
+    echo "✅ HTML files deployed to XAMPP htdocs"
+}
+    
+
+    stage('Test Deployment') {
+        echo "🧪 Testing deployment on XAMPP server..."
+
+        // Send HTTP request to test if HTML file is served
+        bat "curl http://localhost/page1.html"
+    }
+}
