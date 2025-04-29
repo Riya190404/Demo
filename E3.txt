@@ -55,6 +55,14 @@ git remote add origin https://github.com/your-username/JavaAdditionCI.git
 git branch -M main
 git push -u origin main
 echo public class Addition { public static void main(String[] args) { System.out.println("Hello"); } } > Addition.java
+cat <<EOF > Addition.java
+public class Addition {
+    public static void main(String[] args) {
+        System.out.println("Hello");
+    }
+}
+EOF
+
 git init
 git add .
 git commit -m "Initial commit"
